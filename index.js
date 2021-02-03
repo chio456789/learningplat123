@@ -15,7 +15,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-const connection = "mongodb+srv://chio1234:chio9399947@cluster0.j827c.mongodb.net/learnplat?retryWrites=true&w=majority";
+const connection = process.env.DATABASE;
 mongoose.connect(connection, {
     useNewUrlParser:true,
     useCreateIndex: true,
@@ -33,7 +33,7 @@ app.use('/api/profile', require('./routes/user'));
 
 
 //listen
-const port= process.env.PORT
+const port= process.env.PORT || 4000
 
 app.listen(port, ()=>{
     console.log('servidor de plataforma de aprendizaje ejecutado en el puerto 4000');
